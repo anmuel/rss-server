@@ -1,0 +1,79 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: rss-server
+  description: RSS Reader Server App
+basePath: /api/v1
+tags:
+  - name: Feeds
+    description: Simple feeds endpoints
+  - name: Specification
+    description: The swagger API specification
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+definitions:
+  FeedBody:
+    type: object
+    title: feed
+    required:
+      - name
+      - url
+    properties:
+      name:
+        type: string
+        description: The feed name
+      url:
+        type: string
+        description: The feed's URL
+
+paths:
+  /feeds:
+    get:
+      tags:
+        - Feeds
+      description: Fetch all feeds
+      responses:
+        200:
+          description: Returns all feeds
+    post:
+      tags:
+        - Feeds
+      description: Create a new feed
+      parameters:
+        - name: feed
+          in: body
+          description: number of items to skip
+          required: true
+          schema: 
+            $ref: "#/definitions/FeedBody"
+      responses:
+        200:
+          description: Returns all feeds
+
+  /feeds/{id}:
+    get:
+      tags:
+        - Feeds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the entity to retrieve
+          type: integer
+      responses:
+        200:
+          description: Return the feed with the specified id
+        404:
+          description: Feed not found
+
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        200:
+          description: Return the API specification
