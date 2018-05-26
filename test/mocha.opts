@@ -1,3 +1,6 @@
 --compilers js:babel-register
+--recursive
 --exit
+--formatter html
+--formatter spec
 test/**/*.spec.js

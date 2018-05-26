@@ -3,12 +3,12 @@ import db from './feeds.db.service';
 
 class FeedsService {
   all() {
-    l.info(`${this.constructor.name}.all()`);
+    l.debug(__filename, `${this.constructor.name}.all()`);
     return db.all();
   }
 
   byId(id) {
-    l.info(`${this.constructor.name}.byId(${id})`);
+    l.debug(__filename, `${this.constructor.name}.byId(${id})`);
     return db.byId(id);
   }
 

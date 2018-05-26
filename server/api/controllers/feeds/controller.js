@@ -3,6 +3,7 @@ import l from '../../../common/logger';
 
 export class FeedsController {
   all(req, res) {
+    l.debug(__filename, 'Controller all');
     FeedsService.all()
       .then(r => res.json(r))
       .catch(err => {
@@ -12,13 +13,13 @@ export class FeedsController {
   }
 
   byId(req, res) {
-    const { uuid } = req.params;
-    l.info('Controller get by id route %s', uuid);
+    const { id } = req.params;
+    l.debug(__filename, 'get by id route %s', id);
     FeedsService
-      .byId(uuid)
+      .byId(id)
       .then(r => {
         if (r) {
-          res.json(r);
+          res.json(r).end();
         } else {
           res.status(404).json().end();
         }

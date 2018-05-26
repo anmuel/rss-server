@@ -18,7 +18,7 @@ class FeedsDatabase {
     this._db = mongoose.connection;
     this._db.on('error', l.error.bind(l, 'connection error'));
     this._db.once('open', () => {
-      l.info('connected to database %s', dbUrl);
+      l.info(__filename, 'connected to database %s', dbUrl);
     });
   }
 
